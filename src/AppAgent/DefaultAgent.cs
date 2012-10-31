@@ -72,17 +72,35 @@ namespace Taobao.Infrastructure.AppAgents
             , string name
             , string description
             , IMessageHandle handle)
+            : this(factory.Create(typeof(DefaultAgent))
+            , master, name, description, handle)
+        {
+            this._log = factory.Create(this.GetType());
+        }
+        /// <summary>
+        /// 初始化agent
+        /// </summary>
+        /// <param name="log"></param>
+        /// <param name="master">指定master server，若为空则忽略</param>
+        /// <param name="name">agent节点名</param>
+        /// <param name="description">agent节点描述</param>
+        /// <param name="handle"></param>
+        public DefaultAgent(ILog log
+            , string master
+            , string name
+            , string description
+            , IMessageHandle handle)
         {
             if (string.IsNullOrEmpty(name)
                 || handle == null
-                || factory == null)
-                throw new InvalidOperationException("name|handle|factory均不能为空");
+                || log == null)
+                throw new InvalidOperationException("name|handle|log均不能为空");
 
             this._name = name;
             this._description = description;
             this._master = master;
             this._handle = handle;
-            this._log = factory.Create(this.GetType());
+            this._log = log;
 
             if (!string.IsNullOrEmpty(this._description)
                 && this._description.Length > 100)

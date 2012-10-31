@@ -5,6 +5,13 @@ Easy way to manage your processes.
 
 contact: houkun@taobao.com
 
+## Build
+
+```shell
+build.bat
+```
+then see: build/AppAgent/
+
 ## License
 
 	Copyright (c) Alibaba.  All rights reserved. - http://www.alibaba-inc.com/
