@@ -52,6 +52,11 @@ namespace Taobao.Infrastructure.AppAgents
         /// <summary>
         /// 初始化
         /// </summary>
+        /// <param name="log"></param>
+        public DefaultMaster(ILog log) : this(log, null) { }
+        /// <summary>
+        /// 初始化
+        /// </summary>
         /// <param name="factory"></param>
         public DefaultMaster(ILoggerFactory factory) : this(factory, null) { }
         /// <summary>
@@ -61,6 +66,17 @@ namespace Taobao.Infrastructure.AppAgents
         /// <param name="handle">定义命令处理，PS:避免writeline()空内容会导致pipe broken</param>
         public DefaultMaster(ILoggerFactory factory, Action<string, StreamWriter> handle)
             : base(factory, Name, Name, "Master", new DefaultHandle())
+        {
+            this._agents = new List<Agent>();
+            this._handle = new MasterMessageHandle(this, handle);
+        }
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="log"></param>
+        /// <param name="handle">定义命令处理，PS:避免writeline()空内容会导致pipe broken</param>
+        public DefaultMaster(ILog log, Action<string, StreamWriter> handle)
+            : base(log, Name, Name, "Master", new DefaultHandle())
         {
             this._agents = new List<Agent>();
             this._handle = new MasterMessageHandle(this, handle);

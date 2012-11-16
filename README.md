@@ -12,6 +12,14 @@ build.bat
 ```
 then see: build/AppAgent/
 
+## Sample
+
+Namepipe, windows only.
+
+```shell
+run.ps1
+```
+
 ## License
 
 	Copyright (c) Alibaba.  All rights reserved. - http://www.alibaba-inc.com/

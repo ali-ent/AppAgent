@@ -25,4 +25,13 @@
           /p:DocumentationFile=${build.absolutepath}\AppAgent.Xml"
           workingdir="${dir}\src\AppAgent" />
   </target>
+
+  <target name="sample" description="sample">
+    <exec program="${msbuild}"
+          commandline="${msbuild.params} ${msbuild.params.output}\App"
+          workingdir="${dir}\samples\App" />
+    <exec program="${msbuild}"
+          commandline="${msbuild.params} ${msbuild.params.output}\Master"
+          workingdir="${dir}\samples\Master" />
+  </target>
 </project>
